@@ -38,6 +38,9 @@ class Client:
     name: str = ""
     description: str = ""
     is_admin: bool = False
+    account_id: str = ""
+    hub_id: str = ""
+    policy_group_id: str = ""
     last_seen: float = -1
     intent_blacklist: List[str] = field(default_factory=list)
     skill_blacklist: List[str] = field(default_factory=list)
