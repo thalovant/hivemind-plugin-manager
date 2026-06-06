@@ -66,7 +66,6 @@ class AgentProtocol(_SubProtocol, abc.ABC):
                                                              # and only then assigned in hm_protocol.__post_init__
     callbacks: ClientCallbacks = dataclasses.field(default_factory=ClientCallbacks)
 
-    @abc.abstractmethod
     def natural_language_query(self, utterance: str,
                                lang: str) -> Iterator[Optional[str]]:
         """Stream an answer to a natural-language query.
