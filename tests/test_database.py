@@ -193,6 +193,16 @@ class TestAbstractDB(unittest.TestCase):
         self.assertEqual(len(found), 1)
         self.assertEqual(found[0].client_id, 1)
 
+    def test_refresh_returns_current_client_by_id(self):
+        db = _InMemoryDB()
+        db.add_item(Client(client_id=1, api_key="k", name="old"))
+        db.add_item(Client(client_id=1, api_key="k", name="new"))
+
+        refreshed = db.refresh(1)
+
+        self.assertIsNotNone(refreshed)
+        self.assertEqual(refreshed.name, "new")
+
     def test_delete_replaces_with_revoked(self):
         db = _InMemoryDB()
         db.add_item(Client(client_id=1, api_key="real", name="a"))
