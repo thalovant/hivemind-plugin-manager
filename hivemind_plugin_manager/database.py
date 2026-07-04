@@ -115,11 +115,21 @@ class Client:
         else:
             self.metadata.pop("intent_blacklist", None)
 
-    # message_blacklist is not part of the data model. No property
-    # shim and no metadata carry-forward; deserialize strips the
-    # top-level key silently, the kwarg path discards the value with
-    # a DeprecationWarning but the kwarg itself is accepted so
-    # backends passing it positionally don't crash.
+    @property
+    def message_blacklist(self) -> List[str]:
+        return list(self.metadata.get("message_blacklist") or [])
+
+    @message_blacklist.setter
+    def message_blacklist(self, value):
+        warnings.warn(
+            "Client.message_blacklist setter is deprecated; write to "
+            "Client.metadata['message_blacklist'] instead.",
+            DeprecationWarning, stacklevel=2,
+        )
+        if value:
+            self.metadata["message_blacklist"] = list(value)
+        else:
+            self.metadata.pop("message_blacklist", None)
 
     def serialize(self) -> str:
         """
@@ -154,7 +164,7 @@ class Client:
         # existing on-disk JSON DBs keep loading. Emits a one-time
         # DeprecationWarning per legacy key seen. Don't clobber values
         # already in metadata.
-        for legacy_key in ("skill_blacklist", "intent_blacklist"):
+        for legacy_key in ("skill_blacklist", "intent_blacklist", "message_blacklist"):
             if legacy_key in client_data:
                 val = client_data.pop(legacy_key)
                 if val:
@@ -169,10 +179,6 @@ class Client:
                         DeprecationWarning, stacklevel=3,
                     )
                     metadata.setdefault(legacy_key, list(val))
-
-        # message_blacklist is not part of the data model; drop the
-        # key without carry-forward so on-disk records keep loading.
-        client_data.pop("message_blacklist", None)
 
         known = {f.name for f in fields(Client)}
         extras = {k: client_data.pop(k) for k in list(client_data) if k not in known}
@@ -246,22 +252,17 @@ class Client:
 # (skill_blacklist, intent_blacklist) are accepted and auto-migrated
 # into metadata. Done as a post-class assignment because @property
 # attributes with the same name conflict with both dataclass field
-# annotations and InitVar pseudo-fields. ``message_blacklist`` is
-# accepted-and-discarded — see comment in
-# ``_client_init_with_legacy_kwargs``.
+# annotations and InitVar pseudo-fields.
 _client_dataclass_init = Client.__init__
 
 
 def _client_init_with_legacy_kwargs(self, *args, skill_blacklist=None,
                                      intent_blacklist=None,
                                      message_blacklist=None, **kwargs):
-    # ``message_blacklist`` is accepted-and-discarded with a
-    # DeprecationWarning. The kwarg surface is preserved so backends
-    # passing it positionally still construct successfully; the value
-    # is dropped (no metadata carry-forward, no persistence).
     _client_dataclass_init(self, *args, **kwargs)
     for key, val in (("skill_blacklist", skill_blacklist),
-                     ("intent_blacklist", intent_blacklist)):
+                     ("intent_blacklist", intent_blacklist),
+                     ("message_blacklist", message_blacklist)):
         if val:
             warnings.warn(
                 f"Client.{key} kwarg is deprecated; auto-migrating into "
@@ -270,15 +271,6 @@ def _client_init_with_legacy_kwargs(self, *args, skill_blacklist=None,
                 DeprecationWarning, stacklevel=2,
             )
             self.metadata.setdefault(key, list(val))
-    if message_blacklist:
-        warnings.warn(
-            "Client.message_blacklist is REMOVED — the value passed "
-            "via this kwarg is being discarded. The field contradicted "
-            "the deny-by-default whitelist model and was never a real "
-            "admission gate. Stop passing this kwarg; it will be "
-            "rejected entirely in a future release.",
-            DeprecationWarning, stacklevel=2,
-        )
 
 
 Client.__init__ = _client_init_with_legacy_kwargs

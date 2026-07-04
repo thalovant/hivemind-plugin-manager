@@ -301,17 +301,11 @@ class TestDeprecatedBlacklistShims(unittest.TestCase):
         c = Client(client_id=1, api_key="k")
         self.assertEqual(c.skill_blacklist, [])
         self.assertEqual(c.intent_blacklist, [])
+        self.assertEqual(c.message_blacklist, [])
 
-    def test_message_blacklist_kwarg_accepted_but_discarded(self):
-        """``message_blacklist`` is not part of the data model. The
-        kwarg is accepted to keep backends that pass it positionally
-        working, but the value is discarded with a DeprecationWarning
-        — no property, no metadata carry-forward."""
-        # No property at the class level.
-        self.assertFalse(hasattr(type(Client(client_id=1, api_key="k")),
-                                  "message_blacklist"))
-        # Constructor kwarg is accepted but emits a warning and
-        # discards the value — NOT carried into metadata.
+    def test_message_blacklist_kwarg_migrates_and_warns(self):
+        """``message_blacklist`` is deprecated but remains readable for
+        published protocol code that still checks the property."""
         ctx, caught = self._catch_warnings()
         try:
             c = Client(client_id=1, api_key="k",
@@ -319,12 +313,8 @@ class TestDeprecatedBlacklistShims(unittest.TestCase):
         finally:
             ctx.__exit__(None, None, None)
         self._assert_has_deprecation(caught, "message_blacklist")
-        self.assertNotIn("message_blacklist", c.metadata)
-        # Caller-supplied metadata key is still stored untouched (it's
-        # just a dict — Client doesn't claim that key as special).
-        c2 = Client(client_id=1, api_key="k",
-                    metadata={"message_blacklist": ["speak"]})
-        self.assertEqual(c2.metadata["message_blacklist"], ["speak"])
+        self.assertEqual(c.message_blacklist, ["speak"])
+        self.assertEqual(c.metadata["message_blacklist"], ["speak"])
 
     def test_property_setter_writes_to_metadata_and_warns(self):
         c = Client(client_id=1, api_key="k")
@@ -352,7 +342,7 @@ class TestDeprecatedBlacklistShims(unittest.TestCase):
             "client_id": 1, "api_key": "k",
             "skill_blacklist": ["s"],
             "intent_blacklist": ["i"],
-            "message_blacklist": ["m"],  # dropped silently, no carry-forward
+            "message_blacklist": ["m"],
         }
         ctx, caught = self._catch_warnings()
         try:
@@ -361,12 +351,10 @@ class TestDeprecatedBlacklistShims(unittest.TestCase):
             ctx.__exit__(None, None, None)
         self._assert_has_deprecation(caught, "skill_blacklist")
         self._assert_has_deprecation(caught, "intent_blacklist")
+        self._assert_has_deprecation(caught, "message_blacklist")
         self.assertEqual(c.metadata["skill_blacklist"], ["s"])
         self.assertEqual(c.metadata["intent_blacklist"], ["i"])
-        # message_blacklist is removed outright: not carried into metadata
-        # and no DeprecationWarning emitted (it's not "deprecated" — it's
-        # gone, and silently dropping the key is the back-compat path).
-        self.assertNotIn("message_blacklist", c.metadata)
+        self.assertEqual(c.metadata["message_blacklist"], ["m"])
 
     def test_deserialize_does_not_clobber_existing_metadata(self):
         payload = {
