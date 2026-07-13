@@ -1,12 +1,62 @@
 # Changelog
 
-## [0.4.1a1](https://github.com/JarbasHiveMind/hivemind-plugin-manager/tree/0.4.1a1) (2025-12-18)
+## [0.4.1a2](https://github.com/thalovant/hivemind-plugin-manager/tree/0.4.1a2) (2026-07-13)
 
-[Full Changelog](https://github.com/JarbasHiveMind/hivemind-plugin-manager/compare/0.4.0...0.4.1a1)
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.4.1a1...0.4.1a2)
 
 **Merged pull requests:**
 
-- chore: Configure Renovate [\#12](https://github.com/JarbasHiveMind/hivemind-plugin-manager/pull/12) ([renovate[bot]](https://github.com/apps/renovate))
+- Harden organization security controls [\#4](https://github.com/thalovant/hivemind-plugin-manager/pull/4) ([goldyfruit](https://github.com/goldyfruit))
+- Add client metadata support [\#3](https://github.com/thalovant/hivemind-plugin-manager/pull/3) ([goldyfruit](https://github.com/goldyfruit))
+- Add generic policy plugin support [\#2](https://github.com/thalovant/hivemind-plugin-manager/pull/2) ([goldyfruit](https://github.com/goldyfruit))
+
+## [0.4.1a1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.4.1a1) (2025-12-18)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.4.0...0.4.1a1)
+
+## [0.4.0](https://github.com/thalovant/hivemind-plugin-manager/tree/0.4.0) (2024-12-31)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.4.0a1...0.4.0)
+
+## [0.4.0a1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.4.0a1) (2024-12-30)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.3.0...0.4.0a1)
+
+## [0.3.0](https://github.com/thalovant/hivemind-plugin-manager/tree/0.3.0) (2024-12-29)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.3.0a1...0.3.0)
+
+## [0.3.0a1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.3.0a1) (2024-12-29)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.2.0...0.3.0a1)
+
+## [0.2.0](https://github.com/thalovant/hivemind-plugin-manager/tree/0.2.0) (2024-12-29)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.2.0a1...0.2.0)
+
+## [0.2.0a1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.2.0a1) (2024-12-29)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.1.0...0.2.0a1)
+
+## [0.1.0](https://github.com/thalovant/hivemind-plugin-manager/tree/0.1.0) (2024-12-29)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.1.0a1...0.1.0)
+
+## [0.1.0a1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.1.0a1) (2024-12-29)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.0.2...0.1.0a1)
+
+## [0.0.2](https://github.com/thalovant/hivemind-plugin-manager/tree/0.0.2) (2024-12-28)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.0.2a1...0.0.2)
+
+## [0.0.2a1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.0.2a1) (2024-12-28)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/0.0.1...0.0.2a1)
+
+## [0.0.1](https://github.com/thalovant/hivemind-plugin-manager/tree/0.0.1) (2024-12-28)
+
+[Full Changelog](https://github.com/thalovant/hivemind-plugin-manager/compare/725737e28b1e31594e12fd50f89b810f9cf5012a...0.0.1)
 
 
 
