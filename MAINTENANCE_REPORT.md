@@ -19,8 +19,10 @@ checkout and read-only contents permission; four tests pass on Python3.10.
 The owner-approved source-only boundary replaces both legacy release workflows
 with read-only notices. Package publishing, tag/release creation, external
 notifications and branch mutation are removed. Test and security checks remain
-active. Six regressions pass on Python3.10, including two structured workflow
+active. Seven regressions pass on Python3.10, including two structured workflow
 guards; exact-head hosted checks remain required before merge and rearchival.
+The actual installer declares Python>=3.10, with an installed-metadata guard
+matching the patched filelock's supported interpreters.
 
 ## Transparency Report
 

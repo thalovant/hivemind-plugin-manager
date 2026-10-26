@@ -37,6 +37,11 @@ def test_ci_checks_out_the_event_revision_with_read_only_permissions() -> None:
     assert "ref" not in checkouts[0].get("with", {})
 
 
+def test_python_floor_matches_the_patched_filelock() -> None:
+    """Reject interpreters unsupported by the real filelock dependency."""
+    assert metadata("hivemind-plugin-manager")["Requires-Python"] == ">=3.10"
+
+
 def test_combo_lock_excludes_other_instances_and_releases(tmp_path: Path) -> None:
     """The selected filelock must preserve the API used by transitive consumers."""
     held = ComboLock(tmp_path / "dependency.lock")

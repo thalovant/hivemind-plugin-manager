@@ -17,6 +17,9 @@ The workflow keeps read-only permissions and tests this boundary explicitly.
 
 ## Why is filelock pinned exactly?
 
+Python>=3.10 is explicitly declared because the patched dependency does not
+support earlier interpreters. The installed distribution metadata is tested.
+
 3.20.3 contains the earlier fixes and predates the newer affected features.
 A broad 3.x range can select an affected version. See the primary ranges and
 verified limits in [dependency security](docs/dependency-security.md).

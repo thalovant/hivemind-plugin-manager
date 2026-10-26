@@ -47,6 +47,7 @@ def required(requirements_file: str) -> list[str]:
 setup(
     name='hivemind-plugin-manager',
     version=get_version(),
+    python_requires='>=3.10',
     packages=['hivemind_plugin_manager'],
     url='https://github.com/JarbasHiveMind/hivemind-plugin-manager',
     license='Apache-2.0',

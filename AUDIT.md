@@ -17,6 +17,9 @@ The checkout override is removed, with a structured YAML regression guard and
 read-only permissions retained. Security analysis must pass on the corrected
 head before merge. Both legacy release workflows are now read-only notices:
 they cannot publish packages, create tags/releases, notify external channels,
-or mutate branches. Six regression tests pass on Python3.10, including two
+or mutate branches. Seven regression tests pass on Python3.10, including two
 structured workflow checks. Test and security workflows remain active.
+
+`setup.py` declares Python>=3.10, matching the patched filelock requirement.
+Installed metadata is tested so older interpreters are not falsely advertised.
 

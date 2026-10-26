@@ -37,6 +37,8 @@ application's normal build and vulnerability gates remain required.
 Both legacy release workflows now contain only a notice with read-only contents
 permission. They cannot publish packages, tags or releases, or mutate branches.
 The owner approved this boundary specifically for the archived fork repair.
-Six regressions pass on Python3.10, including structured checks of both release
+Seven regressions pass on Python3.10, including structured checks of both release
 workflows; normal build and CodeQL checks are retained. No package is published.
+Actual installer metadata now requires Python>=3.10, matching the patched
+filelock, with an installed-distribution regression test.
 
