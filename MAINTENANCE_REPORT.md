@@ -23,6 +23,8 @@ active. Seven regressions pass on Python3.10, including two structured workflow
 guards; exact-head hosted checks remain required before merge and rearchival.
 The actual installer declares Python>=3.10, with an installed-metadata guard
 matching the patched filelock's supported interpreters.
+The test checkout disables credential persistence before executing build and
+test tooling; the workflow regression asserts this least-privilege boundary.
 
 ## Transparency Report
 

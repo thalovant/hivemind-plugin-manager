@@ -14,6 +14,8 @@ remain enabled.
 The event revision is the intended test input. Overriding it with an untrusted
 PR head name in manual or default-branch context can poison trusted caches.
 The workflow keeps read-only permissions and tests this boundary explicitly.
+It also disables checkout credential persistence because no later step needs
+authenticated Git access.
 
 ## Why is filelock pinned exactly?
 

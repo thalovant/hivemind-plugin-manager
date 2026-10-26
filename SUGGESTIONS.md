@@ -5,6 +5,7 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 Keep the archived fork source-only: preserve test/security checks and the
 regression-tested no-publication release workflows, then restore the
 repository's archived state after the approved repair.
+Retain disabled checkout credential persistence for source build/test jobs.
 
 | Problem | Proposal | Impact |
 | --- | --- | --- |

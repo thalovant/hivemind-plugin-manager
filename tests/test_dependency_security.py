@@ -35,6 +35,7 @@ def test_ci_checks_out_the_event_revision_with_read_only_permissions() -> None:
     ]
     assert len(checkouts) == 1
     assert "ref" not in checkouts[0].get("with", {})
+    assert checkouts[0].get("with", {}).get("persist-credentials") is False
 
 
 def test_python_floor_matches_the_patched_filelock() -> None:

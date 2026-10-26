@@ -43,4 +43,6 @@ Seven regressions pass on Python3.10, including structured checks of both releas
 workflows; normal build and CodeQL checks are retained. No package is published.
 Actual installer metadata now requires Python>=3.10, matching the patched
 filelock, with an installed-distribution regression test.
+The source-test checkout does not persist Git credentials for build tooling;
+the structured workflow guard requires this setting.
 

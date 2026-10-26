@@ -22,4 +22,6 @@ structured workflow checks. Test and security workflows remain active.
 
 `setup.py` declares Python>=3.10, matching the patched filelock requirement.
 Installed metadata is tested so older interpreters are not falsely advertised.
+Checkout credential persistence is disabled before build/install/test code runs,
+with a structured regression assertion; no post-checkout Git access is needed.
 
