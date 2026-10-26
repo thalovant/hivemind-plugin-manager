@@ -28,13 +28,17 @@ def get_version():
     return version
 
 
-def required(requirements_file):
+def required(requirements_file: str) -> list[str]:
     """ Read requirements file and remove comments and empty lines. """
     with open(os.path.join(BASEDIR, requirements_file), 'r') as f:
         requirements = f.read().splitlines()
         if 'MYCROFT_LOOSE_REQUIREMENTS' in os.environ:
             print('USING LOOSE REQUIREMENTS!')
-            requirements = [r.replace('==', '>=').replace('~=', '>=') for r in requirements]
+            requirements = [
+                r if r.strip() == 'filelock==3.20.3'
+                else r.replace('==', '>=').replace('~=', '>=')
+                for r in requirements
+            ]
         return [pkg for pkg in requirements
                 if pkg.strip() and not pkg.startswith("#")]
 

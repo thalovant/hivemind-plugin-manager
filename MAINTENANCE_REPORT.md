@@ -1,0 +1,20 @@
+Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and compatibility constraints.
+
+# Maintenance Report
+
+## Dependency compatibility
+
+Actual install requirements constrain filelock to 3.20.3. The legacy MYCROFT_LOOSE_REQUIREMENTS mode must not convert the security pin into >=3.20.3. setup.py.required preserves this constraint, and its regression test executes the real setup metadata path.
+
+Verification: 3 passed on Python 3.14 and 3 passed on Python 3.10. Wheel/sdist builds and exact built-metadata checks pass.
+See [tests/test_dependency_security.py](tests/test_dependency_security.py).
+No deployment, package publication, or vulnerability exception is performed.
+
+## Transparency Report
+
+- AI model: Codex, GPT-5-based coding agent; a more specific runtime ID is not exposed.
+- Actions: inspected source/primary advisories, edited dependency constraints,
+  added tests/documentation, ran tests and package checks.
+- Oversight: owner-authorized remediation; changes remain subject to PR review
+  and the coordinating agent's merge/release checks.
+
