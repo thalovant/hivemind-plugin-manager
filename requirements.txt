@@ -1,3 +1,5 @@
+# Security compatibility pin: do not loosen to an affected later 3.x release.
+filelock==3.20.3
 json_database
 ovos-bus-client
 ovos-utils
