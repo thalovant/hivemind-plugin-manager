@@ -3,8 +3,9 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 # Quick Facts
 
 The build checks out its event revision with read-only contents permission.
-Four dependency/workflow regression tests pass on Python3.10. Source merge is
-held pending a no-publication boundary and exact-head hosted checks.
+Six dependency/workflow regression tests pass on Python3.10. Both release
+workflows are read-only notices, with no package/tag/release publication.
+Exact-head hosted checks remain required before source merge and rearchival.
 
 | Field | Value |
 | --- | --- |

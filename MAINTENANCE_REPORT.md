@@ -16,8 +16,11 @@ The build workflow now checks out its event revision instead of overriding it
 with `github.head_ref`. This removes the CodeQL-reported untrusted-ref cache
 poisoning path. The new structured YAML regression test verifies the default
 checkout and read-only contents permission; four tests pass on Python3.10.
-The source-only merge remains held until automatic package publication is
-explicitly prevented and the exact-head checks pass.
+The owner-approved source-only boundary replaces both legacy release workflows
+with read-only notices. Package publishing, tag/release creation, external
+notifications and branch mutation are removed. Test and security checks remain
+active. Six regressions pass on Python3.10, including two structured workflow
+guards; exact-head hosted checks remain required before merge and rearchival.
 
 ## Transparency Report
 

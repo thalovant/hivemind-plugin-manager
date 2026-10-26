@@ -32,3 +32,11 @@ The legacy MYCROFT_LOOSE_REQUIREMENTS mode must not convert the security pin int
 A passing library test does not approve a production rollout. The consuming
 application's normal build and vulnerability gates remain required.
 
+## Source-only maintenance
+
+Both legacy release workflows now contain only a notice with read-only contents
+permission. They cannot publish packages, tags or releases, or mutate branches.
+The owner approved this boundary specifically for the archived fork repair.
+Six regressions pass on Python3.10, including structured checks of both release
+workflows; normal build and CodeQL checks are retained. No package is published.
+

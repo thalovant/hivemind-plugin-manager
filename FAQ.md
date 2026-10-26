@@ -2,6 +2,13 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 
 # FAQ
 
+## Can this maintenance merge publish the legacy package?
+
+No. Both release workflows contain only a read-only notice. They have no
+publisher action, reusable release workflow, secret access, tag creation or
+branch mutation. Tests verify that exact boundary; build and security checks
+remain enabled.
+
 ## Why does the test checkout omit an explicit ref?
 
 The event revision is the intended test input. Overriding it with an untrusted

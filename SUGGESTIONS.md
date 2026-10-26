@@ -2,9 +2,9 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 
 # Suggestions
 
-Keep the archived fork source-only: preserve test/security checks, prevent
-obsolete package publication before merging the repair, and restore the
-repository's archived state afterward.
+Keep the archived fork source-only: preserve test/security checks and the
+regression-tested no-publication release workflows, then restore the
+repository's archived state after the approved repair.
 
 | Problem | Proposal | Impact |
 | --- | --- | --- |

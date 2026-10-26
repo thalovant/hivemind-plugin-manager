@@ -47,6 +47,23 @@ def test_combo_lock_excludes_other_instances_and_releases(tmp_path: Path) -> Non
     contender.release()
 
 
+@pytest.mark.parametrize("filename", ["release_workflow.yml", "publish_stable.yml"])
+def test_legacy_release_workflows_are_source_only(filename: str) -> None:
+    """Merging this repair must not publish an obsolete distribution or tag."""
+    path = Path(__file__).resolve().parents[1] / ".github/workflows" / filename
+    workflow = yaml.safe_load(path.read_text())
+    assert workflow["permissions"] == {"contents": "read"}
+    assert set(workflow["jobs"]) == {"source_only"}
+    job = workflow["jobs"]["source_only"]
+    assert "uses" not in job
+    assert "secrets" not in job
+    assert "permissions" not in job
+    assert job["steps"] == [{
+        "name": "Record source-only maintenance",
+        "run": 'echo "This legacy fork does not publish packages, tags, or releases."',
+    }]
+
+
 def test_legacy_loose_requirements_cannot_weaken_security_pin(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
