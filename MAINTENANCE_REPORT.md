@@ -10,6 +10,15 @@ Verification: 3 passed on Python 3.14 and 3 passed on Python 3.10. Wheel/sdist b
 See [tests/test_dependency_security.py](tests/test_dependency_security.py).
 No deployment, package publication, or vulnerability exception is performed.
 
+## Test workflow security
+
+The build workflow now checks out its event revision instead of overriding it
+with `github.head_ref`. This removes the CodeQL-reported untrusted-ref cache
+poisoning path. The new structured YAML regression test verifies the default
+checkout and read-only contents permission; four tests pass on Python3.10.
+The source-only merge remains held until automatic package publication is
+explicitly prevented and the exact-head checks pass.
+
 ## Transparency Report
 
 - AI model: Codex, GPT-5-based coding agent; a more specific runtime ID is not exposed.

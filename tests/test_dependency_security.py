@@ -4,6 +4,7 @@ from importlib.metadata import metadata, version
 from pathlib import Path
 
 import pytest
+import yaml
 from combo_lock import ComboLock
 from packaging.requirements import Requirement
 
@@ -20,6 +21,20 @@ def test_wheel_metadata_keeps_exact_filelock_pin() -> None:
     assert selected[0].marker is None
     assert all(item.url is None for item in requirements)
     assert version("filelock") == "3.20.3"
+
+
+def test_ci_checks_out_the_event_revision_with_read_only_permissions() -> None:
+    """Manual or push builds must not replace the event ref with an input ref."""
+    path = Path(__file__).resolve().parents[1] / ".github/workflows/build_tests.yml"
+    workflow = yaml.safe_load(path.read_text())
+    assert workflow["permissions"] == {"contents": "read"}
+    checkouts = [
+        step
+        for step in workflow["jobs"]["build_tests"]["steps"]
+        if step.get("uses", "").startswith("actions/checkout@")
+    ]
+    assert len(checkouts) == 1
+    assert "ref" not in checkouts[0].get("with", {})
 
 
 def test_combo_lock_excludes_other_instances_and_releases(tmp_path: Path) -> None:

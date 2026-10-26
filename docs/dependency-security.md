@@ -25,6 +25,9 @@ The legacy MYCROFT_LOOSE_REQUIREMENTS mode must not convert the security pin int
   dependency and real classic-lock contention/release.
 - Wheel and sdist builds pass; built wheel metadata contains exact filelock==3.20.3 and no direct-URL dependency.
 - [Client and AbstractDB](../hivemind_plugin_manager/database.py) remains unchanged.
+- Four tests pass on Python3.10 after adding the workflow regression. It verifies
+  structured checkout settings and read-only permissions; CodeQL's untrusted-ref
+  finding is repaired by using the event revision, not dismissed.
 
 A passing library test does not approve a production rollout. The consuming
 application's normal build and vulnerability gates remain required.

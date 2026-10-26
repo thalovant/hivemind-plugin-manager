@@ -2,6 +2,10 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 
 # Suggestions
 
+Keep the archived fork source-only: preserve test/security checks, prevent
+obsolete package publication before merging the repair, and restore the
+repository's archived state afterward.
+
 | Problem | Proposal | Impact |
 | --- | --- | --- |
 | An exact compatibility pin can become stale | Recheck all filelock advisory ranges during consumer release scans | Prevent stale security assumptions |

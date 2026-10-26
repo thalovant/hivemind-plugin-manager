@@ -2,6 +2,10 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 
 # Quick Facts
 
+The build checks out its event revision with read-only contents permission.
+Four dependency/workflow regression tests pass on Python3.10. Source merge is
+held pending a no-publication boundary and exact-head hosted checks.
+
 | Field | Value |
 | --- | --- |
 | Package | hivemind-plugin-manager |

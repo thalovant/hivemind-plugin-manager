@@ -2,6 +2,12 @@ Last Edit: Codex - 2026-10-25 - Motive: Record verified dependency security and 
 
 # FAQ
 
+## Why does the test checkout omit an explicit ref?
+
+The event revision is the intended test input. Overriding it with an untrusted
+PR head name in manual or default-branch context can poison trusted caches.
+The workflow keeps read-only permissions and tests this boundary explicitly.
+
 ## Why is filelock pinned exactly?
 
 3.20.3 contains the earlier fixes and predates the newer affected features.

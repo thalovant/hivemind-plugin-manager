@@ -12,3 +12,10 @@ Client and AbstractDB in [the runtime source](hivemind_plugin_manager/database.p
 This is not a complete audit of that implementation. Future advisory checks
 and consumer artifact tests remain required; [evidence](docs/dependency-security.md).
 
+CodeQL identified a HIGH untrusted-ref cache-poisoning path in the test workflow.
+The checkout override is removed, with a structured YAML regression guard and
+read-only permissions retained. Security analysis must pass on the corrected
+head before merge. Existing dev-merge release jobs would publish the obsolete
+package, so this draft is not mergeable until the approved source-only boundary
+is in place.
+
